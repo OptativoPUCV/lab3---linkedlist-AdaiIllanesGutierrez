@@ -43,7 +43,12 @@ void * firstList(List * list) {
 }
 
 void * nextList(List * list) {
+  if (list->head!=NULL && list->head->next!=NULL)  {
+    list->head->next=list->head->next;
+    return list->head->data;
+  }else{
     return NULL;
+  }
 }
 
 void * lastList(List * list) {
@@ -77,6 +82,7 @@ void * popBack(List * list) {
 
 void * popCurrent(List * list) {
     return NULL;
+  
 }
 
 void cleanList(List * list) {
