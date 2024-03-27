@@ -44,11 +44,10 @@ void * firstList(List * list) {
 
 void * nextList(List * list) {
   if (list->head != NULL && list->head->next != NULL)  {
-    list->head =list->head->next;
+    list->head=list->head->next;
     return list->head->data;
-  }else{
-    return NULL;
   }
+  return NULL;
 }
 
 void * lastList(List * list) {
