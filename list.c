@@ -92,12 +92,13 @@ if (list->current!=NULL){
    Node* newNode = createNode(data);
    newNode->next = list->current->next;
    newNode->prev = list->current;
+   
   if (list->current->next != NULL) {
     list->current->next->prev = newNode;
   }
-  list->current->next = newNode;
+  list->current->next=newNode;
   if (list->current == list->tail) {
-      list->tail = newNode;
+     list->tail= newNode;
   }
 }
 }
@@ -113,7 +114,24 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
+  if(list->current == NULL) {
     return NULL;
+  }
+
+  Node* nodeToDelete = list->current;
+  void* data = nodeToDelete->data;
+  if(nodeToDelete->prev != NULL) {
+    nodeToDelete->prev->next = nodeToDelete->next;
+  } else {
+    list->head = nodeToDelete->next;
+  }
+  if(nodeToDelete->next != NULL) {
+    nodeToDelete->next->prev = nodeToDelete->prev;
+  } else {
+    list->tail = nodeToDelete->prev;
+  }
+  free(nodeToDelete);
+  return data;
   
 }
 
